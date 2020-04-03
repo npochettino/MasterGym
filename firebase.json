@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "mastergym",
+      "public": "dist/mastergym",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

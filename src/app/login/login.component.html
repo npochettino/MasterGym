@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="text-center">
+    <img src="assets/logo.png" style="max-height: 300px;" alt="Master Gym">
+    <h3>Bienvenido, por favor ingrese sus datos</h3>
+  </div>
+  <form [formGroup]="formularioLogin">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="" formControlName="email">
+      <div *ngIf="formularioLogin.controls['email'].invalid && formularioLogin.controls['email'].dirty" class="alert alert-danger" role="alert">
+        <span *ngIf="formularioLogin.controls['email'].errors.required">Email address is required</span>
+        <span *ngIf="formularioLogin.controls['email'].errors.email">Email address is invalid</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="" formControlName="password" (keyUp.enter)="login()">
+      <div *ngIf="formularioLogin.controls['password'].invalid && formularioLogin.controls['password'].dirty" class="alert alert-danger" role="alert">
+        <span *ngIf="formularioLogin.controls['password'].errors.required">
+          Password is required
+        </span>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!formularioLogin.valid" class="btn btn-primary" (click)="login()">Login</button>
+  </form>
+
+  <div *ngIf="!datosCorrectos" class="alert alert-warning" role="alert">
+    {{mensaje}}
+  </div>
+
+  <ngx-spinner bdOpacity = 0.9 bdColor = "rgba(51,51,51,0.59)" size = "medium" color = "#fff" type = "ball-scale-pulse" [fullScreen] = "true" >
+    <p style="color: white" > Loading... </p>
+  </ngx-spinner>
+
+</div>
+
